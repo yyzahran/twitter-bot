@@ -15,9 +15,7 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
-# function to post a tweet everyday
-def tweet_daily(tweet):
-    api.update_status(tweet)
+
 
 
 # open the lyrics file and generate a random line
@@ -31,11 +29,21 @@ with open('radioheadLyrics.txt', 'r') as lyrics_file:
     daily_tweet = random.choice(l)
 
 
-# schedule.every().day.at('08:00').do(tweet_daily)
+# function to post a tweet everyday
+def tweet_daily():
+    api.update_status(daily_tweet)
 
-tweet_daily(daily_tweet)
 
-schedule.every(10).minutes.do(tweet_daily(daily_tweet))
+# timing
+schedule.every(10).minutes.do(tweet_daily)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+
+
+
+
 
 # debugging
 # public_tweets = api.home_timeline()
