@@ -40,7 +40,7 @@ def tweet_daily():
 
 
 # timing
-schedule.every(6).hours.do(tweet_daily)
+schedule.every(1).day.at('11:00').do(tweet_daily)
 
 while True:
     schedule.run_pending()
