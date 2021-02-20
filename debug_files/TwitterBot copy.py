@@ -2,7 +2,6 @@ import tweepy
 import time
 import schedule
 import random
-from crontab import CronTab
 
 # logging in
 consumer_key = "xCkC9VMdgmRtyLWpz1FGMgKH5" # API KEY
@@ -16,6 +15,7 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
+
 # open the lyrics file and generate a random line
 def extract_lyric_line():
     with open('radioheadLyrics.txt', 'r') as lyrics_file:
@@ -25,23 +25,43 @@ def extract_lyric_line():
                 continue
             if lines.isalpha:
                 l.append(lines.rstrip())
+        # return daily_tweet = random.choice(l)
         return random.choice(l)
+        # print(random.choice(l)) # TODO delete this line
 
-
+# extract_lyric_line()
 # function to post a tweet everyday
 def tweet_daily():
     try:
         api.update_status(extract_lyric_line())
     except tweepy.TweepError as error:
         if error.api_code == 187:
+        # Do something special
             print('Duplicate tweet!', extract_lyric_line())
+            api.update_status(extract_lyric_line())
         else:
             raise error
+    # api.update_status(daily_tweet)
 
 
-# timing
-schedule.every(1).day.at('11:00').do(tweet_daily)
+# # timing
+schedule.every(1).minutes.do(tweet_daily)
 
 while True:
     schedule.run_pending()
     time.sleep(1)
+
+
+
+
+
+# debugging
+# public_tweets = api.home_timeline()
+# for tweet in public_tweets:
+#     print(tweet.text)
+
+user = api.me()
+
+# tweet_daily('Tweet from VScode sssagain!')
+
+print(user.screen_name) # returns handle name

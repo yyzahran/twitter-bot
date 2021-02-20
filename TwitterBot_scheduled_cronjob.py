@@ -1,8 +1,6 @@
 import tweepy
 import time
-import schedule
 import random
-from crontab import CronTab
 
 # logging in
 consumer_key = "xCkC9VMdgmRtyLWpz1FGMgKH5" # API KEY
@@ -29,19 +27,21 @@ def extract_lyric_line():
 
 
 # function to post a tweet everyday
-def tweet_daily():
+def post_tweet():
     try:
         api.update_status(extract_lyric_line())
     except tweepy.TweepError as error:
-        if error.api_code == 187:
+        while error.api_code == 187:
             print('Duplicate tweet!', extract_lyric_line())
         else:
             raise error
 
 
-# timing
-schedule.every(1).day.at('11:00').do(tweet_daily)
+post_tweet()
+print('tweet posted') # for local debugging purposes
+# # timing
+# schedule.every(1).day.at('11:00').do(post_tweet)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
