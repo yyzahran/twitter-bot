@@ -1,5 +1,5 @@
 # twitter-bot
-Bot that tweets lyrics of Radiohead everyday
+Bot that tweets lyrics of Radiohead everyday, the account is: https://twitter.com/radiohead_bot_
 
 ![radiohead](https://i.ibb.co/k8sJ3Fd/Screen-Shot-2021-02-21-at-8-57-31-PM.png)
 
