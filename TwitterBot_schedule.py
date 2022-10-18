@@ -5,11 +5,11 @@ import random
 from crontab import CronTab
 
 # logging in
-consumer_key = "xCkC9VMdgmRtyLWpz1FGMgKH5" # API KEY
-consumer_secret = "8RSVwnnG06zApTKQVyxOIJqMEmgXjUxiTidrq5h3aVdEyvihlZ" # API SECRET KEY
-bearer_key = """AAAAAAAAAAAAAAAAAAAAALxGLgEAAAAAOk4nvPLf4%2F%2BwspCiaDGlKyF1YbA%3Dt33TdvGQfjMhmUZo3N7peBipBkJhfivduhWBEDbqP5r6dSC3Kb""" # BEARER KEY
-access_token = "1348505272780607489-8GNvEZZVCkRQT76nNdk3Pn75UuYr6I"
-access_token_secret = "XwEDZl0o45y8RKVxTqMD9TG3HLJ0X6Y8ubrTe1HZghlwN"
+consumer_key = "" # API KEY
+consumer_secret = "" # API SECRET KEY
+bearer_key = """""" # BEARER KEY
+access_token = ""
+access_token_secret = ""
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
